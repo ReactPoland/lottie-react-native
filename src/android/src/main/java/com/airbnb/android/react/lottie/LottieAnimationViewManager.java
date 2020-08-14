@@ -110,8 +110,8 @@ class LottieAnimationViewManager extends SimpleViewManager<LottieAnimationView> 
   }
 
   @Override
-  public void receiveCommand(final LottieAnimationView view, int commandId, final ReadableArray args) {
-    switch (commandId) {
+  public void receiveCommand(final LottieAnimationView view, String commandId, final ReadableArray args) {
+    switch (Integer.parseInt(commandId)) {
       case COMMAND_PLAY: {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
           @Override public void run() {

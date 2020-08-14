@@ -120,7 +120,7 @@ class LottieView extends React.PureComponent {
   reset() {
     this.runCommand('reset');
   }
-  
+
   pause() {
     this.runCommand('pause');
   }
@@ -139,7 +139,7 @@ class LottieView extends React.PureComponent {
       android: () =>
         UIManager.dispatchViewManagerCommand(
           handle,
-          safeGetViewManagerConfig('LottieAnimationView').Commands[name],
+          String(safeGetViewManagerConfig('LottieAnimationView').Commands[name]),
           args,
         ),
       ios: () => LottieViewManager[name](this.getHandle(), ...args),
@@ -162,7 +162,7 @@ class LottieView extends React.PureComponent {
       this.props.onAnimationFinish(evt.nativeEvent.isCancelled);
     }
   }
-  
+
   onLayout(evt) {
     if (this.props.onLayout) {
       this.props.onLayout(evt);
@@ -185,7 +185,7 @@ class LottieView extends React.PureComponent {
 
     const speed =
       this.props.duration && sourceJson && this.props.source.fr
-        ? Math.round(this.props.source.op / this.props.source.fr * 1000 / this.props.duration)
+        ? Math.round(((this.props.source.op / this.props.source.fr) * 1000) / this.props.duration)
         : this.props.speed;
 
     return (
