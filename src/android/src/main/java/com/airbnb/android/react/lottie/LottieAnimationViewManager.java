@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Handler;
 import android.os.Looper;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import android.widget.ImageView;
 import android.view.View.OnAttachStateChangeListener;
@@ -43,6 +46,7 @@ class LottieAnimationViewManager extends SimpleViewManager<LottieAnimationView> 
         .build();
   }
 
+  @NonNull
   @Override public String getName() {
     return REACT_CLASS;
   }
@@ -90,14 +94,14 @@ class LottieAnimationViewManager extends SimpleViewManager<LottieAnimationView> 
     }
   }
 
-  @Override public Map getExportedCustomBubblingEventTypeConstants() {
-    return MapBuilder.builder()
-        .put(
+  @Nullable
+  @Override
+  public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
+    return MapBuilder.of(
             "animationFinish",
             MapBuilder.of(
                 "phasedRegistrationNames",
-                MapBuilder.of("bubbled", "onAnimationFinish")))
-        .build();
+                MapBuilder.of("bubbled", "onAnimationFinish")));
   }
 
   @Override public Map<String, Integer> getCommandsMap() {
